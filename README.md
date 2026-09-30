@@ -1,4 +1,4 @@
-# Examee
+<img width="1408" height="768" alt="clean_Gemini_Generated_Image_j9mznyj9mznyj9mz" src="https://github.com/user-attachments/assets/dfdeb413-2567-4444-abdb-38a0617422e7" /># Examee
 
 ### AI-Assisted Examination Evaluation & On-Screen Marking
 
@@ -39,54 +39,7 @@ The architecture separates institutional examination operations from AI processi
 
 ### Institutional workflow
 
-```text
-┌────────────────────┐
-│      Exam Cell     │
-│ Upload + Metadata  │
-└─────────┬──────────┘
-          │
-          ▼
-┌────────────────────┐
-│ Central Repository │
-│ Identity + Status  │
-└─────────┬──────────┘
-          │
-          ▼
-┌────────────────────┐
-│ Teacher Assignment │
-│ Role-filtered Queue│
-└─────────┬──────────┘
-          │
-          ▼
-┌────────────────────┐
-│ AI Digitization    │
-│ Vision / OCR       │
-└─────────┬──────────┘
-          │
-          ▼
-┌────────────────────┐
-│ Marking Scheme     │
-│ Questions + Steps  │
-└─────────┬──────────┘
-          │
-          ▼
-┌────────────────────┐
-│ AI Evaluation      │
-│ Marks + Feedback   │
-└─────────┬──────────┘
-          │
-          ▼
-┌────────────────────┐
-│ Examiner Review    │
-│ Accept / Override  │
-│ Flag / Notes       │
-└─────────┬──────────┘
-          │
-          ▼
-┌────────────────────┐
-│ Finalized Result   │
-└────────────────────┘
-```
+[![flow.png](https://i.postimg.cc/Dw4wxymm/flow.png)](https://postimg.cc/21mY6YQf)
 
 ---
 
