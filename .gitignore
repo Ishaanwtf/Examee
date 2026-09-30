@@ -7,6 +7,7 @@
 
 # production
 /build
+/.data/
 
 # env files
 .env

@@ -20,7 +20,7 @@ function emptyDatabase(): Database {
 export async function getDatabase(): Promise<Database> {
   try {
     const data = JSON.parse(await readFile(filePath, "utf8")) as Database;
-    const sheets = data.sheets.filter((sheet) => !RETIRED_SEED_IDS.has(sheet.id));
+    const sheets = data.sheets.filter((sheet) => !(RETIRED_SEED_IDS.has(sheet.id) && sheet.filename === `${sheet.id}.pdf` && sheet.studentId.startsWith("STU26-")));
     if (sheets.length !== data.sheets.length) {
       const cleaned = { ...data, sheets };
       await saveDatabase(cleaned);

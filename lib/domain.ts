@@ -11,6 +11,7 @@ export type AiGrading = { gradedAt: string; questions: AiQuestionGrade[] };
 export type Exam = { academicYear: string; examination: string; major: string; semester: string; subject: string; courseCode: string; markingScheme: string };
 export type AnswerSheet = {
   id: string; filename: string; fileSize: number; uploadedAt: string; studentId: string;
+  storagePath?: string;
   exam: Exam; assignedTeacherId?: string; status: SheetStatus; ocrError?: string;
   pages: OcrPage[]; questions: OcrQuestion[]; evaluation: Record<string, EvaluationEntry>;
   aiGrading?: AiGrading | null; totalScore?: number;

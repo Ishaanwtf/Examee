@@ -17,7 +17,7 @@ export async function POST(req: NextRequest) {
   if (!user) return NextResponse.json({ error: "Unauthorised." }, { status: 401 });
   if (body.action === "create" && user.role === "EXAM_CELL") {
     const input = body.sheet as Partial<AnswerSheet>; const code = input.exam?.courseCode || "SHEET";
-    const next = db.sheets.filter((s) => s.exam.courseCode === code).length + 1;
+    const next = db.sheets.filter((s) => s.exam.courseCode === code).reduce((highest, sheet) => Math.max(highest, Number(sheet.id.split("-").at(-1)) || 0), 0) + 1;
     const sheet: AnswerSheet = { ...input, id: `${code}-SEM${input.exam?.semester || "1"}-2026-${String(next).padStart(4, "0")}`, uploadedAt: new Date().toISOString(), status: "PROCESSING", pages: [], questions: [], evaluation: {} } as AnswerSheet;
     db.sheets.unshift(sheet); await saveDatabase(db); return NextResponse.json({ sheet });
   }

@@ -30,6 +30,187 @@
   ],
   "sheets": [
     {
+      "filename": "110233.png",
+      "fileSize": 388415,
+      "studentId": "CSE23-110233",
+      "assignedTeacherId": "math-teacher",
+      "exam": {
+        "academicYear": "2026",
+        "examination": "End Semester Examination",
+        "major": "B.Tech Computer Science",
+        "semester": "3",
+        "subject": "Engineering Mathematics",
+        "courseCode": "MAT301",
+        "markingScheme": ""
+      },
+      "id": "MAT301-SEM3-2026-0011",
+      "uploadedAt": "2026-09-30T17:07:26.707Z",
+      "status": "AI_EVALUATED",
+      "pages": [
+        {
+          "pageNumber": 1,
+          "text": "1. (a) (i) Graph : [Image of a graph containing nodes A, B, C, D, E, F]. Adjacency list (given): A : B, C B : A, D, E C : A, F D : B, E E : B, D, F F : C, E\n(ii) BFS starting from A :\nVisited order : A, B, C, D, E, F\n(iii) DFS starting from A :\nVisited order : A, B, D, E, F, C\n(b) Comparison of BFS and DFS :\n[Table containing data: \nAspect: Data structure, BFS: Queue (FIFO), DFS: Stack (LIFO) / Recursion\nAspect: Time complexity, BFS: O(V+E), DFS: O(V+E)\nAspect: Traversal order, BFS: Level by level, DFS: Goes deep as possible\nAspect: Typical applications, BFS: Shortest path (unweighted), level order traversal, DFS: Cycle detection, topological Sorting, connected components]\n\n2. (a) (i) Construct BST by inserting : 50, 30, 70, 20, 40, 60, 80\n[Image of BST with root 50, left child 30 (children 20, 40), right child 70 (children 60, 80)]\n(ii) Traversals :\nInorder : 20, 30, 40, 50, 60, 70, 80\nPreorder : 50, 30, 20, 40, 70, 60, 80\nPostorder : 20, 40, 30, 60, 80, 70, 50\n(iii) Delete node with value 30 :\n[Image of BST with root 50, left child 40 (child 20), right child 70 (children 60, 80)]\n(b) Time complexity in BST :\n[Table containing data:\nOperation: Search, Average case: O(log n), Worst case: O(n)\nOperation: Insertion, Average case: O(log n), Worst case: O(n)\nOperation: Deletion, Average case: O(log n), Worst case: O(n)]"
+        }
+      ],
+      "questions": [
+        {
+          "questionNumber": "1",
+          "text": "(a) (i) Graph : [Image of a graph containing nodes A, B, C, D, E, F]. Adjacency list (given): A : B, C B : A, D, E C : A, F D : B, E E : B, D, F F : C, E\n(ii) BFS starting from A :\nVisited order : A, B, C, D, E, F\n(iii) DFS starting from A :\nVisited order : A, B, D, E, F, C\n(b) Comparison of BFS and DFS :\n[Table containing data: \nAspect: Data structure, BFS: Queue (FIFO), DFS: Stack (LIFO) / Recursion\nAspect: Time complexity, BFS: O(V+E), DFS: O(V+E)\nAspect: Traversal order, BFS: Level by level, DFS: Goes deep as possible\nAspect: Typical applications, BFS: Shortest path (unweighted), level order traversal, DFS: Cycle detection, topological Sorting, connected components]",
+          "pageNumber": 1
+        },
+        {
+          "questionNumber": "2",
+          "text": "(a) (i) Construct BST by inserting : 50, 30, 70, 20, 40, 60, 80\n[Image of BST with root 50, left child 30 (children 20, 40), right child 70 (children 60, 80)]\n(ii) Traversals :\nInorder : 20, 30, 40, 50, 60, 70, 80\nPreorder : 50, 30, 20, 40, 70, 60, 80\nPostorder : 20, 40, 30, 60, 80, 70, 50\n(iii) Delete node with value 30 :\n[Image of BST with root 50, left child 40 (child 20), right child 70 (children 60, 80)]\n(b) Time complexity in BST :\n[Table containing data:\nOperation: Search, Average case: O(log n), Worst case: O(n)\nOperation: Insertion, Average case: O(log n), Worst case: O(n)\nOperation: Deletion, Average case: O(log n), Worst case: O(n)]",
+          "pageNumber": 1
+        }
+      ],
+      "evaluation": {
+        "1": {
+          "score": "10",
+          "notes": "All parts of the graph theory question were answered correctly and accurately.",
+          "decision": "accept"
+        }
+      },
+      "storagePath": "C:\\Users\\ADMIN\\Desktop\\exam-ocr-app (2)\\exam-ocr-app\\.data\\uploads\\MAT301-SEM3-2026-0011.png",
+      "aiGrading": {
+        "gradedAt": "2026-09-30T17:09:46.979Z",
+        "questions": [
+          {
+            "questionNumber": "1",
+            "maxScore": 10,
+            "awarded": 10,
+            "steps": [
+              {
+                "description": "Graph drawing correct",
+                "maxMarks": 2,
+                "marks": 2
+              },
+              {
+                "description": "BFS traversal correct",
+                "maxMarks": 2,
+                "marks": 2
+              },
+              {
+                "description": "DFS traversal correct",
+                "maxMarks": 2,
+                "marks": 2
+              },
+              {
+                "description": "Comparison of data structures, complexity and applications",
+                "maxMarks": 4,
+                "marks": 4
+              }
+            ],
+            "feedback": "All parts of the graph theory question were answered correctly and accurately."
+          },
+          {
+            "questionNumber": "2",
+            "maxScore": 10,
+            "awarded": 10,
+            "steps": [
+              {
+                "description": "BST construction correct",
+                "maxMarks": 2,
+                "marks": 2
+              },
+              {
+                "description": "Inorder, preorder, and postorder traversals correct",
+                "maxMarks": 3,
+                "marks": 3
+              },
+              {
+                "description": "BST deletion correct",
+                "maxMarks": 2,
+                "marks": 2
+              },
+              {
+                "description": "Explanation of time complexities for operations",
+                "maxMarks": 3,
+                "marks": 3
+              }
+            ],
+            "feedback": "The BST construction, traversals, and deletion logic are all perfectly executed."
+          }
+        ]
+      }
+    },
+    {
+      "filename": "110233.png",
+      "fileSize": 388415,
+      "studentId": "CSE23-110233",
+      "assignedTeacherId": "math-teacher",
+      "exam": {
+        "academicYear": "2026",
+        "examination": "End Semester Examination",
+        "major": "B.Tech Computer Science",
+        "semester": "3",
+        "subject": "Engineering Mathematics",
+        "courseCode": "MAT301",
+        "markingScheme": ""
+      },
+      "id": "MAT301-SEM3-2026-0010",
+      "uploadedAt": "2026-09-30T17:06:59.814Z",
+      "status": "PENDING",
+      "pages": [
+        {
+          "pageNumber": 1,
+          "text": "1. (a) (i) Graph : [Image of a graph with nodes A, B, C, D, E, F] Adjacency list (given): A : B, C B : A, D, E C : A, F D : B, E E : B, D, F F : C, E\n(ii) BFS starting from A :\nVisited order : A, B, C, D, E, F\n(iii) DFS starting from A :\nVisited order : A, B, D, E, F, C\n(b) Comparison of BFS and DFS :\n[Table with columns: Aspect, BFS, DFS]\nData structure | Queue (FIFO) | Stack (LIFO) / Recursion\nTime complexity | O(V+E) | O(V+E)\nTraversal order | Level by level | Goes deep as possible\nTypical applications | Shortest path (unweighted), level order traversal | Cycle detection, topological Sorting, connected components\n\n2. (a) (i) Construct BST by inserting : 50, 30, 70, 20, 40, 60, 80\n[Image of a BST rooted at 50 with children 30, 70; grandchildren 20, 40, 60, 80]\n(ii) Traversals :\nInorder : 20, 30, 40, 50, 60, 70, 80\nPreorder : 50, 30, 20, 40, 70, 60, 80\nPostorder : 20, 40, 30, 60, 80, 70, 50\n(iii) Delete node with value 30 : [Image of a BST rooted at 50, left child 40 with child 20; right child 70 with children 60, 80]\n(b) Time complexity in BST :\n[Table with columns: Operation, Average case, Worst case]\nSearch | O(log n) | O(n)\nInsertion | O(log n) | O(n)\nDeletion | O(log n) | O(n)"
+        }
+      ],
+      "questions": [
+        {
+          "questionNumber": "1",
+          "text": "(a) (i) Graph : [Image of a graph with nodes A, B, C, D, E, F] Adjacency list (given): A : B, C B : A, D, E C : A, F D : B, E E : B, D, F F : C, E\n(ii) BFS starting from A :\nVisited order : A, B, C, D, E, F\n(iii) DFS starting from A :\nVisited order : A, B, D, E, F, C\n(b) Comparison of BFS and DFS :\n[Table with columns: Aspect, BFS, DFS]\nData structure | Queue (FIFO) | Stack (LIFO) / Recursion\nTime complexity | O(V+E) | O(V+E)\nTraversal order | Level by level | Goes deep as possible\nTypical applications | Shortest path (unweighted), level order traversal | Cycle detection, topological Sorting, connected components",
+          "pageNumber": 1
+        },
+        {
+          "questionNumber": "2",
+          "text": "(a) (i) Construct BST by inserting : 50, 30, 70, 20, 40, 60, 80\n[Image of a BST rooted at 50 with children 30, 70; grandchildren 20, 40, 60, 80]\n(ii) Traversals :\nInorder : 20, 30, 40, 50, 60, 70, 80\nPreorder : 50, 30, 20, 40, 70, 60, 80\nPostorder : 20, 40, 30, 60, 80, 70, 50\n(iii) Delete node with value 30 : [Image of a BST rooted at 50, left child 40 with child 20; right child 70 with children 60, 80]\n(b) Time complexity in BST :\n[Table with columns: Operation, Average case, Worst case]\nSearch | O(log n) | O(n)\nInsertion | O(log n) | O(n)\nDeletion | O(log n) | O(n)",
+          "pageNumber": 1
+        }
+      ],
+      "evaluation": {},
+      "storagePath": "C:\\Users\\ADMIN\\Desktop\\exam-ocr-app (2)\\exam-ocr-app\\.data\\uploads\\MAT301-SEM3-2026-0010.png"
+    },
+    {
+      "filename": "110233.png",
+      "fileSize": 388415,
+      "studentId": "CSE23-110233",
+      "assignedTeacherId": "math-teacher",
+      "exam": {
+        "academicYear": "2026",
+        "examination": "End Semester Examination",
+        "major": "B.Tech Computer Science",
+        "semester": "3",
+        "subject": "Engineering Mathematics",
+        "courseCode": "MAT301",
+        "markingScheme": ""
+      },
+      "id": "MAT301-SEM3-2026-0009",
+      "uploadedAt": "2026-09-30T17:06:27.367Z",
+      "status": "PENDING",
+      "pages": [
+        {
+          "pageNumber": 1,
+          "text": "1. (a) (i) Graph : [Image of graph with nodes A, B, C, D, E, F]. Adjacency list (given): A : B, C; B : A, D, E; C : A, F; D : B, E; E : B, D, F; F : C, E\n(ii) BFS starting from A :\nVisited order : A, B, C, D, E, F\n(iii) DFS starting from A :\nVisited order : A, B, D, E, F, C\n(b) Comparison of BFS and DFS :\n[Table with columns: Aspect, BFS, DFS]\nData structure | Queue (FIFO) | Stack (LIFO) / Recursion\nTime complexity | O(V+E) | O(V+E)\nTraversal order | Level by level | Goes deep as possible\nTypical applications | Shortest path (unweighted), level order traversal | Cycle detection, topological Sorting, connected components\n\n2. (a) (i) Construct BST by inserting : 50, 30, 70, 20, 40, 60, 80\n[Image of BST with root 50, left child 30 (children 20, 40), right child 70 (children 60, 80)]\n(ii) Traversals :\nInorder : 20, 30, 40, 50, 60, 70, 80\nPreorder : 50, 30, 20, 40, 70, 60, 80\nPostorder : 20, 40, 30, 60, 80, 70, 50\n(iii) Delete node with value 30 :\n[Image of modified BST with root 50, left child 40 (child 20), right child 70 (children 60, 80)]\n(b) Time complexity in BST :\n[Table with columns: Operation, Average case, Worst case]\nSearch | O(log n) | O(n)\nInsertion | O(log n) | O(n)\nDeletion | O(log n) | O(n)"
+        }
+      ],
+      "questions": [
+        {
+          "questionNumber": "1",
+          "text": "(a) (i) Graph : [Image of graph with nodes A, B, C, D, E, F]. Adjacency list (given): A : B, C; B : A, D, E; C : A, F; D : B, E; E : B, D, F; F : C, E\n(ii) BFS starting from A :\nVisited order : A, B, C, D, E, F\n(iii) DFS starting from A :\nVisited order : A, B, D, E, F, C\n(b) Comparison of BFS and DFS :\n[Table with columns: Aspect, BFS, DFS]\nData structure | Queue (FIFO) | Stack (LIFO) / Recursion\nTime complexity | O(V+E) | O(V+E)\nTraversal order | Level by level | Goes deep as possible\nTypical applications | Shortest path (unweighted), level order traversal | Cycle detection, topological Sorting, connected components",
+          "pageNumber": 1
+        },
+        {
+          "questionNumber": "2",
+          "text": "(a) (i) Construct BST by inserting : 50, 30, 70, 20, 40, 60, 80\n[Image of BST with root 50, left child 30 (children 20, 40), right child 70 (children 60, 80)]\n(ii) Traversals :\nInorder : 20, 30, 40, 50, 60, 70, 80\nPreorder : 50, 30, 20, 40, 70, 60, 80\nPostorder : 20, 40, 30, 60, 80, 70, 50\n(iii) Delete node with value 30 :\n[Image of modified BST with root 50, left child 40 (child 20), right child 70 (children 60, 80)]\n(b) Time complexity in BST :\n[Table with columns: Operation, Average case, Worst case]\nSearch | O(log n) | O(n)\nInsertion | O(log n) | O(n)\nDeletion | O(log n) | O(n)",
+          "pageNumber": 1
+        }
+      ],
+      "evaluation": {},
+      "storagePath": "C:\\Users\\ADMIN\\Desktop\\exam-ocr-app (2)\\exam-ocr-app\\.data\\uploads\\MAT301-SEM3-2026-0009.png"
+    },
+    {
       "filename": "20260924_165343_mfnr (1).jpg",
       "fileSize": 486624,
       "studentId": "CSE23-0142",
