@@ -1,0 +1,157 @@
+{
+  "users": [
+    {
+      "id": "exam-cell",
+      "name": "Exam Cell",
+      "email": "examcell@examee.local",
+      "role": "EXAM_CELL"
+    },
+    {
+      "id": "math-teacher",
+      "name": "Dr. Meera Shah",
+      "email": "math@examee.local",
+      "role": "TEACHER",
+      "subject": "Engineering Mathematics"
+    },
+    {
+      "id": "physics-teacher",
+      "name": "Dr. Arjun Rao",
+      "email": "physics@examee.local",
+      "role": "TEACHER",
+      "subject": "Applied Physics"
+    },
+    {
+      "id": "cs-teacher",
+      "name": "Dr. Neha Iyer",
+      "email": "cs@examee.local",
+      "role": "TEACHER",
+      "subject": "Data Structures"
+    }
+  ],
+  "sheets": [
+    {
+      "filename": "20260924_165343_mfnr (1).jpg",
+      "fileSize": 486624,
+      "studentId": "CSE23-0142",
+      "assignedTeacherId": "math-teacher",
+      "exam": {
+        "academicYear": "2026",
+        "examination": "End Semester Examination",
+        "major": "B.Tech Computer Science",
+        "semester": "3",
+        "subject": "Engineering Mathematics",
+        "courseCode": "MAT301",
+        "markingScheme": "Q1 (10 marks): method and correct calculation.\nQ2 (10 marks): derivation and final answer."
+      },
+      "id": "MAT301-SEM3-2026-0008",
+      "uploadedAt": "2026-09-30T14:38:41.610Z",
+      "status": "FINALIZED",
+      "pages": [
+        {
+          "pageNumber": 1,
+          "text": "Q.1. Who is the PM of ISRAEL\nAns -> Benjamin Netanyahu\n\nQ.2. What is (2 x 7)/8\n=> (2 x 7)/8 => 14/8 => 1/2\n\nQ.3. When was India become sovereign?\n=> 1857"
+        }
+      ],
+      "questions": [
+        {
+          "questionNumber": "Q.1",
+          "text": "Who is the PM of ISRAEL\nAns -> Benjamin Netanyahu",
+          "pageNumber": 1
+        },
+        {
+          "questionNumber": "Q.2",
+          "text": "What is (2 x 7)/8\n=> (2 x 7)/8 => 14/8 => 1/2",
+          "pageNumber": 1
+        },
+        {
+          "questionNumber": "Q.3",
+          "text": "When was India become sovereign?\n=> 1857",
+          "pageNumber": 1
+        }
+      ],
+      "evaluation": {
+        "Q.1": {
+          "score": "10",
+          "notes": "Correct answer provided.",
+          "decision": "accept"
+        },
+        "Q.2": {
+          "score": "9",
+          "notes": "",
+          "decision": "override"
+        }
+      },
+      "aiGrading": {
+        "gradedAt": "2026-09-30T14:39:11.738Z",
+        "questions": [
+          {
+            "questionNumber": "Q.1",
+            "maxScore": 10,
+            "awarded": 10,
+            "steps": [
+              {
+                "description": "Correct identification of the Prime Minister",
+                "maxMarks": 10,
+                "marks": 10
+              }
+            ],
+            "feedback": "Correct answer provided."
+          },
+          {
+            "questionNumber": "Q.2",
+            "maxScore": 10,
+            "awarded": 5,
+            "steps": [
+              {
+                "description": "Correct method/initial calculation (14/8)",
+                "maxMarks": 5,
+                "marks": 5
+              },
+              {
+                "description": "Correct final simplification",
+                "maxMarks": 5,
+                "marks": 0
+              }
+            ],
+            "feedback": "The initial calculation was correct, but the final simplification to 1/2 is incorrect; 14/8 simplifies to 7/4 or 1.75."
+          },
+          {
+            "questionNumber": "Q.3",
+            "maxScore": 10,
+            "awarded": 0,
+            "steps": [
+              {
+                "description": "Correct date/year of Indian sovereignty",
+                "maxMarks": 10,
+                "marks": 0
+              }
+            ],
+            "feedback": "Incorrect historical date provided; India became a sovereign nation on August 15, 1947."
+          }
+        ]
+      },
+      "totalScore": 19
+    },
+    {
+      "filename": "Examee_Document_3_Problem_Statement_and_Proposed_Solution.pdf",
+      "fileSize": 31204,
+      "studentId": "CSE23-0142",
+      "assignedTeacherId": "math-teacher",
+      "exam": {
+        "academicYear": "2026",
+        "examination": "End Semester Examination",
+        "major": "B.Tech Computer Science",
+        "semester": "3",
+        "subject": "Engineering Mathematics",
+        "courseCode": "MAT301",
+        "markingScheme": "Q1 (10 marks): method and correct calculation.\nQ2 (10 marks): derivation and final answer."
+      },
+      "id": "MAT301-SEM3-2026-0007",
+      "uploadedAt": "2026-09-30T14:38:15.146Z",
+      "status": "PROCESSING",
+      "pages": [],
+      "questions": [],
+      "evaluation": {}
+    }
+  ]
+}

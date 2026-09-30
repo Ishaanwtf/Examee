@@ -6,18 +6,20 @@ import DashboardView from "@/components/DashboardView";
 import AnswerSheetsView from "@/components/AnswerSheetsView";
 import EvaluationView from "@/components/EvaluationView";
 import { AppProvider, useApp } from "@/lib/store";
+import AnalyticsView from "@/components/AnalyticsView";
+import LoginView from "@/components/LoginView";
 
 export type Section =
   | "dashboard"
   | "answer-sheets"
   | "evaluation"
-  | "analytics"
-  | "moderation"
-  | "settings";
+  | "analytics";
 
 function Shell() {
   const [section, setSection] = useState<Section>("dashboard");
-  const { activeSheet } = useApp();
+  const { user, loading } = useApp();
+  if (loading) return <div className="grid min-h-screen place-items-center text-indigo-600">Loading Examee…</div>;
+  if (!user) return <LoginView />;
 
   return (
     <div className="flex">
@@ -28,15 +30,7 @@ function Shell() {
           <AnswerSheetsView onOpenEvaluation={() => setSection("evaluation")} />
         )}
         {section === "evaluation" && <EvaluationView onBack={() => setSection("answer-sheets")} />}
-        {(section === "analytics" ||
-          section === "moderation" ||
-          section === "settings") && (
-          <div className="flex h-[70vh] items-center justify-center">
-            <p className="text-[14px] text-slate-400">
-              This screen wasn&apos;t part of the design handoff yet.
-            </p>
-          </div>
-        )}
+        {section === "analytics" && <AnalyticsView />}
       </main>
     </div>
   );

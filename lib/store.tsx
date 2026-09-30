@@ -1,195 +1,32 @@
 "use client";
-
-import {
-  createContext,
-  useCallback,
-  useContext,
-  useEffect,
-  useMemo,
-  useState,
-  type ReactNode,
-} from "react";
-
-export type OcrQuestion = {
-  questionNumber: string;
-  text: string;
-  pageNumber: number;
-};
-
-export type OcrPage = {
-  pageNumber: number;
-  text: string;
-};
-
-export type EvaluationEntry = {
-  score: string;
-  notes: string;
-  decision: "accept" | "override" | "flag" | null;
-};
-
-export type AiStep = {
-  description: string;
-  maxMarks: number;
-  marks: number;
-};
-
-export type AiQuestionGrade = {
-  questionNumber: string;
-  maxScore: number;
-  awarded: number;
-  steps: AiStep[];
-  feedback: string;
-};
-
-export type AiGrading = {
-  gradedAt: string;
-  questions: AiQuestionGrade[];
-};
-
-export type Sheet = {
-  id: string;
-  filename: string;
-  fileSize: number;
-  uploadedAt: string;
-  status: "processing" | "ready" | "failed";
-  ocrError?: string;
-  pages: OcrPage[];
-  questions: OcrQuestion[];
-  evaluation: Record<string, EvaluationEntry>;
-  submitted: boolean;
-  aiGrading?: AiGrading | null;
-};
+import { createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
+import type { AnswerSheet, User, EvaluationEntry } from "@/lib/domain";
+export type { AnswerSheet as Sheet, EvaluationEntry, AiGrading, OcrPage, OcrQuestion, AiQuestionGrade, User } from "@/lib/domain";
 
 type AppState = {
-  sheets: Sheet[];
-  activeSheetId: string | null;
-  markingScheme: string;
-  setMarkingScheme: (text: string) => void;
-  addSheet: (input: { filename: string; fileSize: number }) => Sheet;
-  updateSheet: (id: string, updater: (sheet: Sheet) => Sheet) => void;
-  removeSheet: (id: string) => void;
-  openSheet: (id: string) => void;
-  closeSheet: () => void;
-  activeSheet: Sheet | null;
+  user: User | null; users: User[]; sheets: AnswerSheet[]; activeSheetId: string | null; loading: boolean;
+  markingScheme: string; setMarkingScheme: (text: string) => void;
+  login: (email: string) => Promise<string | null>; logout: () => void; refresh: () => Promise<void>;
+  createSheet: (sheet: Partial<AnswerSheet>) => Promise<AnswerSheet>; updateSheet: (id: string, patch: Partial<AnswerSheet>) => Promise<void>;
+  openSheet: (id: string) => void; closeSheet: () => void; activeSheet: AnswerSheet | null;
 };
-
-const AppContext = createContext<AppState | null>(null);
-
-const STORAGE_KEY = "examai-session-v1";
-
-function loadPersisted(): {
-  sheets: Sheet[];
-  activeSheetId: string | null;
-  markingScheme: string;
-} {
-  const empty = { sheets: [], activeSheetId: null, markingScheme: "" };
-  if (typeof window === "undefined") return empty;
-  try {
-    const raw = window.sessionStorage.getItem(STORAGE_KEY);
-    if (!raw) return empty;
-    const parsed = JSON.parse(raw);
-    if (!Array.isArray(parsed.sheets)) return empty;
-    return {
-      sheets: parsed.sheets,
-      activeSheetId: parsed.activeSheetId ?? null,
-      markingScheme: typeof parsed.markingScheme === "string" ? parsed.markingScheme : ""
-    };
-  } catch {
-    return empty;
-  }
-}
-
+const AppContext = createContext<AppState | null>(null); const KEY = "examee-demo-user"; const SCHEME_KEY = "examee-marking-scheme";
 export function AppProvider({ children }: { children: ReactNode }) {
-  const [sheets, setSheets] = useState<Sheet[]>([]);
-  const [activeSheetId, setActiveSheetId] = useState<string | null>(null);
-  const [markingScheme, setMarkingSchemeState] = useState("");
-  const [hydrated, setHydrated] = useState(false);
-
-  useEffect(() => {
-    const persisted = loadPersisted();
-    setSheets(persisted.sheets);
-    setActiveSheetId(persisted.activeSheetId);
-    setMarkingSchemeState(persisted.markingScheme);
-    setHydrated(true);
-  }, []);
-
-  useEffect(() => {
-    if (!hydrated || typeof window === "undefined") return;
-    window.sessionStorage.setItem(
-      STORAGE_KEY,
-      JSON.stringify({ sheets, activeSheetId, markingScheme })
-    );
-  }, [sheets, activeSheetId, markingScheme, hydrated]);
-
-  const setMarkingScheme = useCallback((text: string) => {
-    setMarkingSchemeState(text);
-  }, []);
-
-  const addSheet = useCallback((input: { filename: string; fileSize: number }) => {
-    const sheet: Sheet = {
-      id: `sheet-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
-      filename: input.filename,
-      fileSize: input.fileSize,
-      uploadedAt: new Date().toISOString(),
-      status: "processing",
-      pages: [],
-      questions: [],
-      evaluation: {},
-      submitted: false,
-    };
-    setSheets((prev) => [sheet, ...prev]);
-    return sheet;
-  }, []);
-
-  const updateSheet = useCallback(
-    (id: string, updater: (sheet: Sheet) => Sheet) => {
-      setSheets((prev) => prev.map((s) => (s.id === id ? updater(s) : s)));
-    },
-    []
-  );
-
-  const removeSheet = useCallback((id: string) => {
-    setSheets((prev) => prev.filter((s) => s.id !== id));
-    setActiveSheetId((prev) => (prev === id ? null : prev));
-  }, []);
-
-  const openSheet = useCallback((id: string) => setActiveSheetId(id), []);
-  const closeSheet = useCallback(() => setActiveSheetId(null), []);
-
-  const activeSheet = useMemo(
-    () => sheets.find((s) => s.id === activeSheetId) ?? null,
-    [sheets, activeSheetId]
-  );
-
-  return (
-    <AppContext.Provider
-      value={{
-        sheets,
-        activeSheetId,
-        markingScheme,
-        setMarkingScheme,
-        addSheet,
-        updateSheet,
-        removeSheet,
-        openSheet,
-        closeSheet,
-        activeSheet,
-      }}
-    >
-      {children}
-    </AppContext.Provider>
-  );
+  const [user, setUser] = useState<User | null>(null); const [users, setUsers] = useState<User[]>([]); const [sheets, setSheets] = useState<AnswerSheet[]>([]);
+  const [activeSheetId, setActiveSheetId] = useState<string | null>(null); const [loading, setLoading] = useState(true);
+  const [markingScheme, setMarkingScheme] = useState("");
+  const load = useCallback(async (email: string) => { const r = await fetch(`/api/app?email=${encodeURIComponent(email)}`, { cache: "no-store" }); if (!r.ok) throw new Error("Unable to load the Examee workspace."); const data = await r.json(); setUser(data.user); setUsers(data.users); setSheets(data.sheets); }, []);
+  useEffect(() => { const email = localStorage.getItem(KEY); if (email) load(email).catch(() => localStorage.removeItem(KEY)).finally(() => setLoading(false)); else setLoading(false); }, [load]);
+  useEffect(() => { setMarkingScheme(localStorage.getItem(SCHEME_KEY) || ""); }, []);
+  useEffect(() => { localStorage.setItem(SCHEME_KEY, markingScheme); }, [markingScheme]);
+  const login = useCallback(async (email: string) => { try { await load(email); localStorage.setItem(KEY, email); return null; } catch { return "Please select one of the demo accounts."; } }, [load]);
+  const logout = useCallback(() => { localStorage.removeItem(KEY); setUser(null); setSheets([]); setActiveSheetId(null); }, []);
+  const refresh = useCallback(async () => { if (user) await load(user.email); }, [user, load]);
+  const mutation = useCallback(async (payload: Record<string, unknown>) => { if (!user) throw new Error("Not signed in."); const r = await fetch("/api/app", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ email: user.email, ...payload }) }); const data = await r.json(); if (!r.ok) throw new Error(data.error || "Could not save changes."); return data.sheet as AnswerSheet; }, [user]);
+  const createSheet = useCallback(async (sheet: Partial<AnswerSheet>) => { const created = await mutation({ action: "create", sheet }); setSheets((s) => [created, ...s]); return created; }, [mutation]);
+  const updateSheet = useCallback(async (id: string, patch: Partial<AnswerSheet>) => { const next = await mutation({ action: "update", sheetId: id, patch }); setSheets((s) => s.map((x) => x.id === id ? next : x)); }, [mutation]);
+  const activeSheet = useMemo(() => sheets.find((s) => s.id === activeSheetId) ?? null, [sheets, activeSheetId]);
+  return <AppContext.Provider value={{ user, users, sheets, activeSheetId, loading, markingScheme, setMarkingScheme, login, logout, refresh, createSheet, updateSheet, openSheet: setActiveSheetId, closeSheet: () => setActiveSheetId(null), activeSheet }}>{children}</AppContext.Provider>;
 }
-
-export function useApp() {
-  const ctx = useContext(AppContext);
-  if (!ctx) throw new Error("useApp must be used inside AppProvider");
-  return ctx;
-}
-
-export function getEvaluationEntry(
-  sheet: Sheet,
-  questionNumber: string
-): EvaluationEntry {
-  return sheet.evaluation[questionNumber] ?? { score: "", notes: "", decision: null };
-}
+export function useApp() { const ctx = useContext(AppContext); if (!ctx) throw new Error("useApp must be used inside AppProvider"); return ctx; }
+export function getEvaluationEntry(sheet: AnswerSheet, questionNumber: string): EvaluationEntry { return sheet.evaluation[questionNumber] ?? { score: "", notes: "", decision: null }; }

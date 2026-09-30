@@ -185,7 +185,7 @@ export default function EvaluationView({
   const [gradeError, setGradeError] = useState<string | null>(null);
 
   async function runAiGrading() {
-    if (!activeSheet || activeSheet.status !== "ready") return;
+    if (!activeSheet || activeSheet.questions.length === 0) return;
     setIsGrading(true);
     setGradeError(null);
     try {
@@ -197,7 +197,7 @@ export default function EvaluationView({
             questionNumber: q.questionNumber,
             text: q.text
           })),
-          markingScheme
+          markingScheme: markingScheme || activeSheet.exam.markingScheme
         })
       });
       let data: { questions?: AiQuestionGrade[]; error?: string };
@@ -213,7 +213,7 @@ export default function EvaluationView({
         gradedAt: new Date().toISOString(),
         questions: data.questions || []
       };
-      updateSheet(activeSheet.id, (s) => ({ ...s, aiGrading }));
+      await updateSheet(activeSheet.id, { aiGrading, status: "AI_EVALUATED" });
     } catch (err) {
       setGradeError(err instanceof Error ? err.message : "AI grading failed.");
     } finally {
@@ -221,7 +221,7 @@ export default function EvaluationView({
     }
   }
 
-  if (!activeSheet || activeSheet.status !== "ready" || activeSheet.questions.length === 0) {
+  if (!activeSheet || activeSheet.questions.length === 0) {
     return (
       <div>
         <header className="mb-6 flex items-center gap-3">
@@ -265,10 +265,8 @@ export default function EvaluationView({
     sheet.pages.find((p) => p.pageNumber === question.pageNumber)?.text ?? "";
 
   function setEntry(next: EvaluationEntry) {
-    updateSheet(sheet.id, (s) => ({
-      ...s,
-      evaluation: { ...s.evaluation, [question.questionNumber]: next }
-    }));
+    const evaluation = { ...sheet.evaluation, [question.questionNumber]: next };
+    void updateSheet(sheet.id, { evaluation, status: next.decision === "flag" ? "NEEDS_REVIEW" : sheet.status });
   }
 
   const gradedCount = questions.filter(
@@ -280,7 +278,8 @@ export default function EvaluationView({
     .reduce((a, b) => a + b, 0);
 
   function submitGrades() {
-    updateSheet(sheet.id, (s) => ({ ...s, submitted: true }));
+    const total = Object.values(sheet.evaluation).reduce((sum, item) => sum + (Number(item.score) || 0), 0);
+    void updateSheet(sheet.id, { status: "FINALIZED", totalScore: total });
     closeSheet();
     onBack();
   }
@@ -299,7 +298,7 @@ export default function EvaluationView({
             <h1 className="text-[17px] font-bold text-slate-900">
               Evaluation Panel
             </h1>
-            <p className="text-[12.5px] text-slate-400">{sheet.filename}</p>
+            <p className="text-[12.5px] text-slate-400">Answer Sheet: {sheet.id} · {sheet.exam.subject}</p>
           </div>
         </div>
         <div className="flex items-center gap-3">
@@ -343,7 +342,7 @@ export default function EvaluationView({
         </div>
       )}
 
-      {sheet.submitted && (
+      {sheet.status === "FINALIZED" && (
         <div className="mb-4 flex items-center gap-2 rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-2.5 text-[13px] text-emerald-600">
           Grades submitted for this sheet.
         </div>
