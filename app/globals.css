@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+
+html {
+  background-color: #F7F8FA;
+}
+
+body {
+  color: #0F172A;
+}
+
+::selection {
+  background: #4F46E5;
+  color: #ffffff;
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+}
