@@ -1,4 +1,4 @@
-<img width="1408" height="768" alt="clean_Gemini_Generated_Image_j9mznyj9mznyj9mz" src="https://github.com/user-attachments/assets/dfdeb413-2567-4444-abdb-38a0617422e7" /># Examee
+# Examee
 
 ### AI-Assisted Examination Evaluation & On-Screen Marking
 
